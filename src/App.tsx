@@ -1,9 +1,9 @@
 import { useState } from "react";
 import goalsImge from "./assets/react.svg";
-import CourseGoal from "./components/CourseGoal";
+import CourseGoalList from "./components/CourseGoalList";
 import Header from "./components/Header";
 
-type CourseGoal = {
+export type CourseGoal = {
   title: string;
   description: string;
   id: number;
@@ -22,21 +22,20 @@ function App() {
       return [...prevGoals, newGoal];
     });
   }
+
+  function handleDeleteGoal(id: number) {
+    setGoals((prevGoals) => {
+      return prevGoals.filter((goal) => goal.id !== id);
+    });
+  }
+
   return (
     <main>
       <Header image={{ src: goalsImge, alt: "A list of goals" }}>
         <h1>Your Course Goals</h1>
       </Header>
       <button onClick={handleAddGoal}>Add Goal</button>
-      <ul>
-        {goals.map((goal) => (
-          <li key={goal.id}>
-            <CourseGoal title={goal.title}>
-              <p>{goal.description}</p>
-            </CourseGoal>
-          </li>
-        ))}
-      </ul>
+      <CourseGoalList onDeleteGoal={handleDeleteGoal} goals={goals} />
     </main>
   );
 }
