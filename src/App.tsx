@@ -4,10 +4,9 @@ import CourseGoal from "./components/CourseGoal";
 function App() {
   return (
     <main>
-      <CourseGoal
-        title="Learn React + Typescript"
-        description="Learn it from the ground up"
-      />
+      <CourseGoal title="Learn React + Typescript">
+        <p>Learn Typescript and React at Academind</p>
+      </CourseGoal>
     </main>
   );
 }
